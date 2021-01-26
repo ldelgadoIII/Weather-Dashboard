@@ -1,0 +1,10 @@
+header {
+  background: rgb(37, 37, 37);
+  padding: 10px 0px 10px 0px;
+}
+
+header a,
+header a:hover {
+  color: white;
+  text-decoration: none;
+}
