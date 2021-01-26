@@ -18,12 +18,8 @@ let queryURL =
   "https://api.openweathermap.org/data/2.5/weather?q=" +
   city +
   "&appid=" +
-  APIKey;
-let fiveDayURL =
-  "https://api.openweathermap.org/data/2.5/forecast?q=" +
-  "" +
-  "&appid=" +
-  APIKey;
+  APIKey +
+  "&units=imperial";
 
 // FUNCTIONS ============================
 $.ajax({
@@ -32,26 +28,6 @@ $.ajax({
 }).then(function (response) {
   console.log(response);
 });
-
-async function getWetherInfo(args) {
-  let result;
-
-  try {
-    result = await $.ajax({
-      url: queryURL,
-      type: "GET",
-      data: args,
-    });
-
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-getWetherInfo().then((data) => (savedWeather = data));
-
-console.log(savedWeather);
 
 // when search button is clicked, save text area to local storage
 // unshift
