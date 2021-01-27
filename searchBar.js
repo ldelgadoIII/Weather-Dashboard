@@ -11,7 +11,7 @@ if (recentSearches) {
   recentSearches.forEach((element) => {
     // Create new button
     let newDiv = $(
-      `<button class="p-3 border container-fluid text-start recent">`
+      `<button class="p-3 border container-fluid text-start" id="recent">`
     );
     newDiv.html(element.search);
     recentSearchArea.prepend(newDiv);
@@ -21,7 +21,7 @@ if (recentSearches) {
 function displayRecentSearches() {
   // Create new button
   let newDiv = $(
-    `<button class="p-3 border container-fluid text-start recent">`
+    `<button class="p-3 border container-fluid text-start" id="recent">`
   );
   newDiv.html(searchBarVal.val());
   recentSearchArea.prepend(newDiv);
@@ -35,11 +35,12 @@ function displayRecentSearches() {
 }
 
 // USER INTERACTIONS ====================
+// Search button event
 $("#searchButton").on("click", function (event) {
   event.preventDefault;
 
   city = searchBarVal.val();
-  cityNameHeader.html(city + " (1/26/2021)");
+  cityNameHeader.html(city + " " + moment().format("MM/D/YYYY"));
 
   // Reset displays
   weatherDetails.empty();
@@ -52,7 +53,8 @@ $("#searchButton").on("click", function (event) {
   displayRecentSearches();
 });
 
-// INITIALIZATION =======================
+$("#recent").click(function (event) {
+  event.preventDefault;
 
-// when search button is clicked, save text area to local storage
-// unshift
+  console.log("Clicked!");
+});

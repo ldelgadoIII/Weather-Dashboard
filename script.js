@@ -17,7 +17,7 @@ function init() {
   city = "Chicago";
   lat = 41.85;
   lon = -87.65;
-  cityNameHeader.html(city + " (1/26/2021)");
+  cityNameHeader.html(city + " " + moment().format("MM/D/YYYY"));
 
   // Call displays
   callWeather();
