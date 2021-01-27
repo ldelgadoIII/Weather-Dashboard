@@ -4,12 +4,20 @@ let fiveDayDisplay = $(".fiveDay");
 // STARTING DATA ========================
 let fiveDayURL =
   "https://api.openweathermap.org/data/2.5/forecast?q=" +
-  "" +
+  city +
   "&appid=" +
   APIKey;
 
 // FUNCTIONS ============================
-// create five cards
+// Request five-day weather info
+$.ajax({
+  url: queryURL,
+  method: "GET",
+}).then(function (response) {
+  console.log(response);
+});
+
+// Display five day forcast cards
 for (let i = 0; i < 5; i++) {
   let newDiv = $('<div class= "col-md-2">');
   newDiv.html(`<div class="card text-white bg-primary mb-3" style="max-width: 18rem">

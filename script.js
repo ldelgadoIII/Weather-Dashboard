@@ -3,7 +3,16 @@ let weatherDetails = $(".weather-details");
 
 // STARTING DATA ========================
 let city = "chicago";
+let lat = 0;
+let lon = 0;
 let APIKey = "27c3f1b88c0950432250ead2579926a4";
+let queryUV =
+  "http://api.openweathermap.org/data/2.5/uvi?lat=" +
+  lat +
+  "&lon=" +
+  lon +
+  "&appid=" +
+  APIKey;
 let queryURL =
   "https://api.openweathermap.org/data/2.5/weather?q=" +
   city +
@@ -12,12 +21,14 @@ let queryURL =
   "&units=imperial";
 
 // FUNCTIONS ============================
+// Request current weather info
 $.ajax({
   url: queryURL,
   method: "GET",
 }).then(function (response) {
   console.log(response);
   displayMainWeather(response);
+  displayUV(response);
 });
 
 function displayMainWeather(response) {
@@ -25,6 +36,20 @@ function displayMainWeather(response) {
   newDiv.html(`<div>Temperature: ${response.main.temp}</div>
   <div>Humidity: ${response.main.humidity}</div>
   <div>Wind Speed: ${response.wind.speed}</div>`);
+  weatherDetails.append(newDiv);
+}
+
+// Request UV info
+$.ajax({
+  url: queryUV,
+  method: "GET",
+}).then(function (response) {
+  console.log(response);
+});
+
+function displayUV(response) {
+  let newDiv = $("<div>");
+  newDiv.html(`<div>UV Index: ${response.value}</div>`);
   weatherDetails.append(newDiv);
 }
 
