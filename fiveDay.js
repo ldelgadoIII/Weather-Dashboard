@@ -11,7 +11,7 @@ let fiveDayURL =
 // FUNCTIONS ============================
 // Request five-day weather info
 $.ajax({
-  url: queryURL,
+  url: fiveDayURL,
   method: "GET",
 }).then(function (response) {
   console.log(response);

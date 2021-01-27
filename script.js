@@ -1,8 +1,9 @@
 // DEPENDENCES ==========================
 let weatherDetails = $(".weather-details");
+let cityNameHeader = $(".cityName");
 
 // STARTING DATA ========================
-let city = "chicago";
+let city = "Chicago";
 let lat = 0;
 let lon = 0;
 let APIKey = "27c3f1b88c0950432250ead2579926a4";
@@ -21,6 +22,8 @@ let queryURL =
   "&units=imperial";
 
 // FUNCTIONS ============================
+cityNameHeader.html(city + " (1/26/2021)");
+
 // Request current weather info
 $.ajax({
   url: queryURL,
