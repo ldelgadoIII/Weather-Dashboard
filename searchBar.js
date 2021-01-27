@@ -6,15 +6,32 @@ let recentSearchArea = $(".searchGroup");
 let recentSearches = [];
 
 // FUNCTIONS ============================
+if (recentSearches) {
+  recentSearches = JSON.parse(localStorage.getItem("Saved-Searches"));
+  recentSearches.forEach((element) => {
+    // Create new button
+    let newDiv = $(
+      `<button class="p-3 border container-fluid text-start recent">`
+    );
+    newDiv.html(element.search);
+    recentSearchArea.prepend(newDiv);
+  });
+}
+
 function displayRecentSearches() {
   // Create new button
-  let newDiv = $(`<button class="p-3 border container-fluid text-start">`);
+  let newDiv = $(
+    `<button class="p-3 border container-fluid text-start recent">`
+  );
   newDiv.html(searchBarVal.val());
   recentSearchArea.prepend(newDiv);
 
   // Save searches to local storage
-  recentSearches.push(searchBarVal.val());
-  localStorage.setItem("Saved-Searches", recentSearches);
+  let newSearchObject = {
+    search: searchBarVal.val(),
+  };
+  recentSearches.push(newSearchObject);
+  localStorage.setItem("Saved-Searches", JSON.stringify(recentSearches));
 }
 
 // USER INTERACTIONS ====================
