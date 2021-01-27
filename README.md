@@ -10,4 +10,4 @@ Welcome to my website where you can use this weather dashboard to search any cit
 
 ## URL to Website
 
-https://ldelgadoiii.github.io/DayPlanner/
+https://ldelgadoiii.github.io/Weather-Dashboard/
