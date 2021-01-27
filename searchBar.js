@@ -1,10 +1,21 @@
 // DEPENDENCES ==========================
 let searchBarVal = $("#searchBar");
+let recentSearchArea = $(".searchGroup");
 
 // STARTING DATA ========================
 let recentSearches = [];
 
 // FUNCTIONS ============================
+function displayRecentSearches() {
+  // Create new button
+  let newDiv = $(`<button class="p-3 border container-fluid text-start">`);
+  newDiv.html(searchBarVal.val());
+  recentSearchArea.prepend(newDiv);
+
+  // Save searches to local storage
+  recentSearches.push(searchBarVal.val());
+  localStorage.setItem("Saved-Searches", recentSearches);
+}
 
 // USER INTERACTIONS ====================
 $("#searchButton").on("click", function (event) {
@@ -21,6 +32,7 @@ $("#searchButton").on("click", function (event) {
   callWeather();
   callUV();
   callFiveDay();
+  displayRecentSearches();
 });
 
 // INITIALIZATION =======================
