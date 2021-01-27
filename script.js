@@ -31,7 +31,6 @@ $.ajax({
 }).then(function (response) {
   console.log(response);
   displayMainWeather(response);
-  displayUV(response);
 });
 
 function displayMainWeather(response) {
@@ -48,6 +47,7 @@ $.ajax({
   method: "GET",
 }).then(function (response) {
   console.log(response);
+  displayUV(response);
 });
 
 function displayUV(response) {
