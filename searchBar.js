@@ -5,25 +5,25 @@ let recentSearchArea = $(".searchGroup");
 // STARTING DATA ========================
 let recentSearches = [];
 
-console.log(recentSearches);
-
 // FUNCTIONS ============================
 if (localStorage.getItem("Saved-Searches")) {
   recentSearches = JSON.parse(localStorage.getItem("Saved-Searches"));
   recentSearches.forEach((element) => {
     // Create new button
     let newDiv = $(
-      `<button class="p-3 border container-fluid text-start" id="recent">`
+      `<button class="p-3 border container-fluid text-start recent">`
     );
     newDiv.html(element.search);
     recentSearchArea.prepend(newDiv);
   });
+
+  clickEventRecent();
 }
 
 function displayRecentSearches() {
   // Create new button
   let newDiv = $(
-    `<button class="p-3 border container-fluid text-start" id="recent">`
+    `<button class="p-3 border container-fluid text-start recent">`
   );
   newDiv.html(searchBarVal.val());
   recentSearchArea.prepend(newDiv);
@@ -53,10 +53,27 @@ $("#searchButton").on("click", function (event) {
   callUV();
   callFiveDay();
   displayRecentSearches();
+  clickEventRecent();
 });
 
-$("#recent").click(function (event) {
-  event.preventDefault;
+function clickEventRecent() {
+  $(".recent").click(function (event) {
+    event.preventDefault();
 
-  console.log("Clicked!");
-});
+    let recentCity = $(this).html();
+
+    city = recentCity.trim();
+    console.log("Clicked: ", city);
+
+    cityNameHeader.html(city + " " + moment().format("MM/D/YYYY"));
+
+    // Reset displays
+    weatherDetails.empty();
+    fiveDayDisplay.empty();
+
+    // Call displays
+    callWeather();
+    callUV();
+    callFiveDay();
+  });
+}
