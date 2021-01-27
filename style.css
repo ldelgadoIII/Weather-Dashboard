@@ -25,6 +25,8 @@ ul {
   margin-left: 43px;
 }
 
-.tempItem {
+.tempItem,
+i,
+.card-text {
   margin-top: 10px;
 }

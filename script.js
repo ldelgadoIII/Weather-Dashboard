@@ -29,7 +29,6 @@ $.ajax({
   url: queryURL,
   method: "GET",
 }).then(function (response) {
-  console.log(response);
   displayMainWeather(response);
 });
 
@@ -46,7 +45,6 @@ $.ajax({
   url: queryUV,
   method: "GET",
 }).then(function (response) {
-  console.log(response);
   displayUV(response);
 });
 

@@ -1,5 +1,6 @@
 // DEPENDENCES ==========================
 let fiveDayDisplay = $(".fiveDay");
+let icon;
 
 // STARTING DATA ========================
 let fiveDayURL =
@@ -15,20 +16,36 @@ $.ajax({
   method: "GET",
 }).then(function (response) {
   console.log(response);
+  displayFiveDay(response);
 });
 
-// Display five day forcast cards
-for (let i = 0; i < 5; i++) {
-  let newDiv = $('<div class= "col-md-2">');
-  newDiv.html(`<div class="card text-white bg-primary mb-3" style="max-width: 18rem">
-    <div class="card-body">
-      <h5 class="card-title">Primary card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and
-        make up the bulk of the card's content.
-      </p>
-    </div>`);
-  fiveDayDisplay.append(newDiv);
+// Display five day forecast cards
+function displayFiveDay(response) {
+  for (let i = 0; i < 5; i++) {
+    // Set cloudiness icon
+    if (response.list[0].clouds.all <= 30) {
+      icon = "fa-sun";
+    } else if (response.list[0].clouds.all <= 60) {
+      icon = "fa-sun-cloud";
+    } else {
+      icon = "fa-cloud";
+    }
+
+    // Create five-day forecast cards
+    let newDiv = $('<div class= "col-md-2">');
+    newDiv.html(`<div class="card text-white bg-primary mb-3" style="max-width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <i class="fas ${icon} fa-7x icons"></i>  
+        <div class="card-text">
+          Temp: ${response.list[0].main.temp}
+          </div>
+          <div class="card-text">
+          Humidity: ${response.list[0].main.humidity}
+          </div>
+      </div>`);
+    fiveDayDisplay.append(newDiv);
+  }
 }
 
 // USER INTERACTIONS ====================
