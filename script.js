@@ -36,9 +36,9 @@ $.ajax({
 
 function displayMainWeather(response) {
   let newDiv = $("<div>");
-  newDiv.html(`<div>Temperature: ${response.main.temp}</div>
-  <div>Humidity: ${response.main.humidity}</div>
-  <div>Wind Speed: ${response.wind.speed}</div>`);
+  newDiv.html(`<div class="tempItem">Temperature: ${response.main.temp}</div>
+  <div class="tempItem">Humidity: ${response.main.humidity}</div>
+  <div class="tempItem">Wind Speed: ${response.wind.speed}</div>`);
   weatherDetails.append(newDiv);
 }
 
@@ -52,7 +52,7 @@ $.ajax({
 
 function displayUV(response) {
   let newDiv = $("<div>");
-  newDiv.html(`<div>UV Index: ${response.value}</div>`);
+  newDiv.html(`<div class="tempItem">UV Index: ${response.value}</div>`);
   weatherDetails.append(newDiv);
 }
 

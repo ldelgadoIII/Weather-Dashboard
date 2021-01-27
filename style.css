@@ -12,3 +12,19 @@ header a:hover {
 ul {
   list-style-type: none;
 }
+
+.weatherContainer {
+  padding: 13px;
+}
+
+.innerContainer {
+  padding: 12px 12px 12px 18px;
+}
+
+.bottomContainer {
+  margin-left: 43px;
+}
+
+.tempItem {
+  margin-top: 10px;
+}

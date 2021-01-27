@@ -27,7 +27,7 @@
     <!-- main container  -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <!-- aside -->
           <aside class="container bg-light">
             <!-- search box -->
@@ -43,22 +43,27 @@
           </aside>
           <!-- rows of recent searches -->
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <div class="row">
-            <div class="col">
-              <h2 class="cityName">
-                <!-- current city search displayed here with date -->
-              </h2>
-              <div class="weather-details">
-                <!-- weather detail inserted here -->
+            <!-- main weather container -->
+            <div class="col weatherContainer">
+              <div class="container border innerContainer">
+                <h2 class="cityName">
+                  <!-- current city search displayed here with date -->
+                </h2>
+                <div class="weather-details">
+                  <!-- weather detail inserted here -->
+                </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col">
-              <h3>5-Day Forecase:</h3>
-              <div class="row fiveDay">
-                <!-- five day cards will be inserted here -->
+            <div class="container">
+              <div class="col bottomContainer">
+                <h3>5-Day Forecast:</h3>
+                <div class="row fiveDay">
+                  <!-- five day cards will be inserted here -->
+                </div>
               </div>
             </div>
           </div>
