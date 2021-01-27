@@ -1,4 +1,5 @@
 // DEPENDENCES ==========================
+let weatherDetails = $(".weather-details");
 // search button
 // temperature textarea
 // humidity textarea
@@ -27,7 +28,16 @@ $.ajax({
   method: "GET",
 }).then(function (response) {
   console.log(response);
+  displayMainWeather(response);
 });
+
+function displayMainWeather(response) {
+  let newDiv = $("<div>");
+  newDiv.html(`<div>Temperature: ${response.main.temp}</div>
+  <div>Humidity: ${response.main.humidity}</div>
+  <div>Wind Speed: ${response.wind.speed}</div>`);
+  weatherDetails.append(newDiv);
+}
 
 // when search button is clicked, save text area to local storage
 // unshift
