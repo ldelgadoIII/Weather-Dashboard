@@ -5,8 +5,10 @@ let recentSearchArea = $(".searchGroup");
 // STARTING DATA ========================
 let recentSearches = [];
 
+console.log(recentSearches);
+
 // FUNCTIONS ============================
-if (recentSearches) {
+if (localStorage.getItem("Saved-Searches")) {
   recentSearches = JSON.parse(localStorage.getItem("Saved-Searches"));
   recentSearches.forEach((element) => {
     // Create new button

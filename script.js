@@ -100,7 +100,6 @@ function callFiveDay() {
     method: "GET",
   }).then(function (response) {
     displayFiveDay(response);
-    console.log(response);
   });
 }
 
