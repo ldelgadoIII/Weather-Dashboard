@@ -100,6 +100,7 @@ function callFiveDay() {
     method: "GET",
   }).then(function (response) {
     displayFiveDay(response);
+    console.log(response);
   });
 }
 
@@ -115,11 +116,14 @@ function displayFiveDay(response) {
       icon = "fa-cloud";
     }
 
+    let newString = response.list[i].dt_txt;
+    let currentDate = newString.slice(0, 10);
+
     // Create five-day forecast cards
     let newDiv = $('<div class= "col-md-2">');
     newDiv.html(`<div class="card text-white bg-primary mb-3" style="max-width: 18rem">
       <div class="card-body">
-        <h5 class="card-title">Primary card title</h5>
+        <h5 class="card-title">${currentDate}</h5>
         <i class="fas ${icon} fa-7x icons"></i>  
         <div class="card-text">
           Temp: ${response.list[i].main.temp}
