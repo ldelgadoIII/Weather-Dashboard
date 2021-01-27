@@ -4,33 +4,30 @@ let cityNameHeader = $(".cityName");
 
 // STARTING DATA ========================
 let city = "Chicago";
-let lat = 0;
-let lon = 0;
+let lat = 41.85;
+let lon = -87.65;
 let APIKey = "27c3f1b88c0950432250ead2579926a4";
-let queryUV =
-  "http://api.openweathermap.org/data/2.5/uvi?lat=" +
-  lat +
-  "&lon=" +
-  lon +
-  "&appid=" +
-  APIKey;
-let queryURL =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  city +
-  "&appid=" +
-  APIKey +
-  "&units=imperial";
 
 // FUNCTIONS ============================
-cityNameHeader.html(city + " (1/26/2021)");
-
 // Request current weather info
-$.ajax({
-  url: queryURL,
-  method: "GET",
-}).then(function (response) {
-  displayMainWeather(response);
-});
+function callWeather() {
+  let queryURL =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    city +
+    "&appid=" +
+    APIKey +
+    "&units=imperial";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+    lat = response.coord.lat;
+    lon = response.coord.lon;
+    displayMainWeather(response);
+  });
+}
 
 function displayMainWeather(response) {
   let newDiv = $("<div>");
@@ -41,17 +38,37 @@ function displayMainWeather(response) {
 }
 
 // Request UV info
-$.ajax({
-  url: queryUV,
-  method: "GET",
-}).then(function (response) {
-  displayUV(response);
-});
+function callUV() {
+  let queryUV =
+    "http://api.openweathermap.org/data/2.5/uvi?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&appid=" +
+    APIKey;
+
+  $.ajax({
+    url: queryUV,
+    method: "GET",
+  }).then(function (response) {
+    displayUV(response);
+  });
+}
 
 function displayUV(response) {
   let newDiv = $("<div>");
-  newDiv.html(`<div class="tempItem">UV Index: ${response.value}</div>`);
+  newDiv.html(
+    `<div class="tempItem">UV Index: <span class="uvState">${response.value}</span></div>`
+  );
   weatherDetails.append(newDiv);
+
+  if (response.value >= 7) {
+    $(".uvState").attr("style", "background: violet");
+  } else if (response.value > 3 && response.value < 7) {
+    $(".uvState").attr("style", "background: yellow");
+  } else {
+    $(".uvState").attr("style", "background: greenyellow");
+  }
 }
 
 // USER INTERACTIONS ====================

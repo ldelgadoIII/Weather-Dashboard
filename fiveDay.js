@@ -2,23 +2,23 @@
 let fiveDayDisplay = $(".fiveDay");
 let icon;
 
-// STARTING DATA ========================
-let fiveDayURL =
-  "https://api.openweathermap.org/data/2.5/forecast?q=" +
-  city +
-  "&appid=" +
-  APIKey +
-  "&units=imperial";
-
 // FUNCTIONS ============================
 // Request five-day weather info
-$.ajax({
-  url: fiveDayURL,
-  method: "GET",
-}).then(function (response) {
-  console.log(response);
-  displayFiveDay(response);
-});
+function callFiveDay() {
+  let fiveDayURL =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    city +
+    "&appid=" +
+    APIKey +
+    "&units=imperial";
+
+  $.ajax({
+    url: fiveDayURL,
+    method: "GET",
+  }).then(function (response) {
+    displayFiveDay(response);
+  });
+}
 
 // Display five day forecast cards
 function displayFiveDay(response) {
@@ -48,7 +48,3 @@ function displayFiveDay(response) {
     fiveDayDisplay.append(newDiv);
   }
 }
-
-// USER INTERACTIONS ====================
-
-// INITIALIZATION =======================
